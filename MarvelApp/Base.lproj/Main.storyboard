@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,13 +19,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharCell" id="jhU-WA-vPs">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharCell" rowHeight="132" id="jhU-WA-vPs" customClass="TableViewCell" customModule="MarvelApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jhU-WA-vPs" id="b0O-cn-h90">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yFu-JK-Whd">
+                                            <rect key="frame" x="16" y="11" width="343" height="110"/>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="B2d-lq-vTv">
+                                            <rect key="frame" x="163" y="95" width="50" height="25.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ypv-Xm-tEL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="25.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHB-ot-gOD">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="25.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="B2d-lq-vTv" firstAttribute="centerX" secondItem="b0O-cn-h90" secondAttribute="centerX" id="72d-T3-YDz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="yFu-JK-Whd" secondAttribute="trailing" id="Kqs-b3-n35"/>
+                                        <constraint firstItem="yFu-JK-Whd" firstAttribute="top" secondItem="b0O-cn-h90" secondAttribute="topMargin" id="VEP-KP-yP6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="B2d-lq-vTv" secondAttribute="bottom" id="ZD4-yQ-UN8"/>
+                                        <constraint firstItem="yFu-JK-Whd" firstAttribute="leading" secondItem="b0O-cn-h90" secondAttribute="leadingMargin" id="fli-aG-A5F"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="yFu-JK-Whd" secondAttribute="bottom" id="gW3-Ky-dq8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="charImage" destination="yFu-JK-Whd" id="d9n-zU-q7d"/>
+                                    <outlet property="charLabel" destination="VHB-ot-gOD" id="JDv-Ij-wcj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -35,7 +69,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PBs-Sg-RJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="590" y="37"/>
+            <point key="canvasLocation" x="589.60000000000002" y="36.431784107946029"/>
         </scene>
     </scenes>
 </document>

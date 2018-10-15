@@ -9,7 +9,10 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var charImage: UIImageView!
+    @IBOutlet weak var charLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

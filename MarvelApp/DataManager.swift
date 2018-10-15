@@ -12,20 +12,31 @@ import SwiftyJSON
 import CryptoSwift
 
 // singleton class for requesting, updating and caching data
-class DataManager: NSObject
+class DataManager
 {
+    //shared instance
     static let shared = DataManager()
+    
+    // developer.marvel information
     let publicKey = "d61a662c80563b05a2656a2d44a9f65a"
     let privateKey = "c118dafc7cc11d4a8a401e843e8e4e26b8d56765"
     let baseURL = "https://gateway.marvel.com/v1/public/characters"
+    let numberOfItems = 20
+    
+    //data array
+    var chars:[CharModel] = [CharModel]()
+    var images:[URL: UIImage] = [:]
+    
+    
 
-    private override init()
+    private init()
     {
 
     }
     
     func downloadData(ofsset: Int)
     {
+        chars.removeAll()
         print("downloading data...")
         let url = baseURL + ""
         var parameters: [String: String] = [:]
@@ -50,12 +61,62 @@ class DataManager: NSObject
                 let charsJSON : JSON = JSON(response.result.value!)
                 
                 
-                print(charsJSON)
- 
+           //     print(charsJSON)
+                print(charsJSON["data"]["results"][0]["name"])
+                self.fillCharsArray(charsJSON: charsJSON)
                 
             }
             else {
                 print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+    func fillCharsArray(charsJSON: JSON)
+    {
+        for i in 0..<numberOfItems
+        {
+            let oneCharJSON = charsJSON["data"]["results"][i]
+            guard let charName = oneCharJSON["name"].string,
+                let charImagePath = oneCharJSON["thumbnail"]["path"].string,
+                let charImageExt = oneCharJSON["thumbnail"]["extension"].string,
+                let charInfo = oneCharJSON["description"].string
+            else
+            {
+                continue
+            }
+            let character = CharModel(pName: charName, pImageURL: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
+            chars.append(character)
+            saveToImageCache(imagePath: character.imageURL)
+
+        }
+    }
+    
+    func saveToImageCache(imagePath: String)
+    {
+        // save image to images cache
+        guard var url = URL(string: imagePath) else
+        {
+            return
+        }
+        
+        if var urlComps = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        {
+            urlComps.scheme = "https"
+            url = urlComps.url!
+            if images[url] == nil
+            {
+//                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url)
+                    {
+                        if let newImage = UIImage(data: data)
+                        {
+                            self.images[url] = newImage
+                            print(url)
+                            print(self.images.count)
+                        }
+                    }
+              //  }
             }
         }
     }

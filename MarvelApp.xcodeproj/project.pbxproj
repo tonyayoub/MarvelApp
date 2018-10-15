@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A7BA3F6C7F18948935A89D7C /* Pods_MarvelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91302CD6261AED78C88FF2D /* Pods_MarvelApp.framework */; };
+		EF41990221753E8F0098A7B8 /* CharModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF41990121753E8F0098A7B8 /* CharModel.swift */; };
+		EF419904217546940098A7B8 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF419903217546940098A7B8 /* UIImageView+URL.swift */; };
 		EF6082DA2174371000F029D8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6082D92174371000F029D8 /* DataManager.swift */; };
 		EFB1360E2173A01C008CD0CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB1360D2173A01C008CD0CF /* AppDelegate.swift */; };
 		EFB136132173A01C008CD0CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB136112173A01C008CD0CF /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		D91302CD6261AED78C88FF2D /* Pods_MarvelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF41990121753E8F0098A7B8 /* CharModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharModel.swift; sourceTree = "<group>"; };
+		EF419903217546940098A7B8 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		EF6082D92174371000F029D8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		EFB1360A2173A01C008CD0CF /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB1360D2173A01C008CD0CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				EFB136222173A082008CD0CF /* TableViewController.swift */,
 				EFB136242173A092008CD0CF /* TableViewCell.swift */,
 				EF6082D92174371000F029D8 /* DataManager.swift */,
+				EF41990121753E8F0098A7B8 /* CharModel.swift */,
+				EF419903217546940098A7B8 /* UIImageView+URL.swift */,
 			);
 			path = MarvelApp;
 			sourceTree = "<group>";
@@ -218,6 +224,8 @@
 				EFB136252173A092008CD0CF /* TableViewCell.swift in Sources */,
 				EFB136232173A082008CD0CF /* TableViewController.swift in Sources */,
 				EFB1360E2173A01C008CD0CF /* AppDelegate.swift in Sources */,
+				EF419904217546940098A7B8 /* UIImageView+URL.swift in Sources */,
+				EF41990221753E8F0098A7B8 /* CharModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
