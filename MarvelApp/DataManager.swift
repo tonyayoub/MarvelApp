@@ -37,7 +37,7 @@ class DataManager
     
     func downloadData(ofsset: Int)
     {
-        chars.removeAll()
+      //  chars.removeAll()
         print("downloading data...")
         let url = baseURL + ""
         var parameters: [String: String] = [:]

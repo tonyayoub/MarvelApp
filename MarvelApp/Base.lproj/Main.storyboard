@@ -81,10 +81,10 @@
                                     <constraint firstAttribute="height" constant="400" id="ykY-31-7ys"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Sample Text" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dSF-Br-vr1">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Sample Text" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSF-Br-vr1">
                                 <rect key="frame" x="10" y="484" width="355" height="203"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>

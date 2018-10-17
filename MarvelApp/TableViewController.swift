@@ -61,7 +61,12 @@ class TableViewController: UITableViewController, DataManagerDelegate {
 
     }
  
-
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == DataManager.shared.chars.count
+        {
+            DataManager.shared.downloadData(ofsset: 20)
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
