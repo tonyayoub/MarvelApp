@@ -16,7 +16,7 @@ class DataManager
 {
     //shared instance
     static let shared = DataManager()
-    
+    var delegate:DataManagerDelegate?
     // developer.marvel information
     let publicKey = "d61a662c80563b05a2656a2d44a9f65a"
     let privateKey = "c118dafc7cc11d4a8a401e843e8e4e26b8d56765"
@@ -25,7 +25,8 @@ class DataManager
     
     //data array
     var chars:[CharModel] = [CharModel]()
-    var images:[URL: UIImage] = [:]
+    var images:[String: UIImage] = [:]
+
     
     
 
@@ -85,11 +86,11 @@ class DataManager
             {
                 continue
             }
-            let character = CharModel(pName: charName, pImageURL: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
+            let character = CharModel(pName: charName, pImagePath: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
             chars.append(character)
-            saveToImageCache(imagePath: character.imageURL)
-
+            saveToImageCache(imagePath: character.imagePath)
         }
+        delegate?.didFinishDownloading(sender: self)
     }
     
     func saveToImageCache(imagePath: String)
@@ -104,15 +105,15 @@ class DataManager
         {
             urlComps.scheme = "https"
             url = urlComps.url!
-            if images[url] == nil
+            if images[imagePath] == nil
             {
 //                DispatchQueue.global().async {
                     if let data = try? Data(contentsOf: url)
                     {
                         if let newImage = UIImage(data: data)
                         {
-                            self.images[url] = newImage
-                            print(url)
+                            self.images[imagePath] = newImage
+                   //         print(url)
                             print(self.images.count)
                         }
                     }

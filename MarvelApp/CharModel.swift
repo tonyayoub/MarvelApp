@@ -11,13 +11,13 @@ import UIKit
 class CharModel: NSObject
 {
     var name:String
-    var imageURL:String
+    var imagePath:String
     var info:String
     
-    init(pName: String, pImageURL: String, pInfo: String )
+    init(pName: String, pImagePath: String, pInfo: String )
     {
         name = pName
-        imageURL = pImageURL
+        imagePath = pImagePath
         info = pInfo
     }
 }

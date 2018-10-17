@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, DataManagerDelegate {
 
     override func viewDidLoad()
     {
@@ -19,7 +19,7 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        DataManager.shared.delegate = self
         DataManager.shared.downloadData(ofsset: 0)
     }
 
@@ -28,27 +28,39 @@ class TableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func didFinishDownloading(sender: DataManager)
+    {
+        print("need to update table")
+        tableView.reloadData()
+        
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        let numberOfRowsSections = DataManager.shared.chars.count
+        print("Number of Rows: \(numberOfRowsSections)")
+        return DataManager.shared.chars.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
 
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CharCell", for: indexPath) as! TableViewCell
+        let char = DataManager.shared.chars[indexPath.row]
+        cell.charLabel.text = char.name
+        let charImage = DataManager.shared.images[char.imagePath]
+        cell.charImage.image = charImage
         return cell
+
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
