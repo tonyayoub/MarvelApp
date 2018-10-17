@@ -11,6 +11,7 @@
 		EF41990221753E8F0098A7B8 /* CharModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF41990121753E8F0098A7B8 /* CharModel.swift */; };
 		EF419904217546940098A7B8 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF419903217546940098A7B8 /* UIImageView+URL.swift */; };
 		EF419908217728200098A7B8 /* DataManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF419907217728200098A7B8 /* DataManagerDelegate.swift */; };
+		EF41990A21775A530098A7B8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF41990921775A530098A7B8 /* DetailViewController.swift */; };
 		EF6082DA2174371000F029D8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6082D92174371000F029D8 /* DataManager.swift */; };
 		EFB1360E2173A01C008CD0CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB1360D2173A01C008CD0CF /* AppDelegate.swift */; };
 		EFB136132173A01C008CD0CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB136112173A01C008CD0CF /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		EF41990121753E8F0098A7B8 /* CharModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharModel.swift; sourceTree = "<group>"; };
 		EF419903217546940098A7B8 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		EF419907217728200098A7B8 /* DataManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerDelegate.swift; sourceTree = "<group>"; };
+		EF41990921775A530098A7B8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EF6082D92174371000F029D8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		EFB1360A2173A01C008CD0CF /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB1360D2173A01C008CD0CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				EF41990121753E8F0098A7B8 /* CharModel.swift */,
 				EF419903217546940098A7B8 /* UIImageView+URL.swift */,
 				EF419907217728200098A7B8 /* DataManagerDelegate.swift */,
+				EF41990921775A530098A7B8 /* DetailViewController.swift */,
 			);
 			path = MarvelApp;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF41990A21775A530098A7B8 /* DetailViewController.swift in Sources */,
 				EFB136162173A01C008CD0CF /* MarvelApp.xcdatamodeld in Sources */,
 				EF6082DA2174371000F029D8 /* DataManager.swift in Sources */,
 				EFB136252173A092008CD0CF /* TableViewCell.swift in Sources */,

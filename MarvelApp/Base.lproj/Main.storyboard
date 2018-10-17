@@ -31,7 +31,7 @@
                                             <rect key="frame" x="16" y="11" width="343" height="160"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="kkP-mI-3JO">
-                                            <rect key="frame" x="157.5" y="132.5" width="61.5" height="29"/>
+                                            <rect key="frame" x="157" y="132.5" width="61.5" height="29"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                             <nil key="textColor"/>
@@ -51,7 +51,7 @@
                                 <connections>
                                     <outlet property="charImage" destination="am5-VV-gak" id="9rx-FL-FwG"/>
                                     <outlet property="charLabel" destination="kkP-mI-3JO" id="4Ug-ZA-bD4"/>
-                                    <segue destination="dhr-KT-hdv" kind="show" id="ciV-1r-Q8a"/>
+                                    <segue destination="dhr-KT-hdv" kind="show" identifier="detail" id="ciV-1r-Q8a"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -66,20 +66,48 @@
             </objects>
             <point key="canvasLocation" x="1528.8" y="36.431784107946029"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="pbf-ZD-YEj">
             <objects>
-                <viewController id="dhr-KT-hdv" sceneMemberID="viewController">
+                <viewController id="dhr-KT-hdv" customClass="DetailViewController" customModule="MarvelApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W2x-DV-e1Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bKE-HP-kn7">
+                                <rect key="frame" x="-12.5" y="64" width="400" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="ljk-GA-at9"/>
+                                    <constraint firstAttribute="height" constant="400" id="ykY-31-7ys"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Sample Text" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dSF-Br-vr1">
+                                <rect key="frame" x="10" y="484" width="355" height="203"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dSF-Br-vr1" firstAttribute="leading" secondItem="W9U-aO-xPo" secondAttribute="leading" constant="10" id="4bu-Xd-Wo3"/>
+                            <constraint firstItem="dSF-Br-vr1" firstAttribute="top" secondItem="bKE-HP-kn7" secondAttribute="bottom" constant="20" id="72v-fx-J6V"/>
+                            <constraint firstItem="dSF-Br-vr1" firstAttribute="bottom" secondItem="W9U-aO-xPo" secondAttribute="bottom" constant="20" id="EMl-zq-5vA"/>
+                            <constraint firstItem="dSF-Br-vr1" firstAttribute="centerX" secondItem="W2x-DV-e1Y" secondAttribute="centerX" id="MvY-HQ-h66"/>
+                            <constraint firstItem="W9U-aO-xPo" firstAttribute="trailing" secondItem="dSF-Br-vr1" secondAttribute="trailing" constant="10" id="tFj-XC-Ktx"/>
+                            <constraint firstItem="bKE-HP-kn7" firstAttribute="top" secondItem="W9U-aO-xPo" secondAttribute="top" id="wes-Kn-LoH"/>
+                            <constraint firstItem="bKE-HP-kn7" firstAttribute="centerX" secondItem="W2x-DV-e1Y" secondAttribute="centerX" id="yF8-ZP-GAI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="W9U-aO-xPo"/>
                     </view>
+                    <connections>
+                        <outlet property="charImage" destination="bKE-HP-kn7" id="pUn-7H-Wwv"/>
+                        <outlet property="charInfo" destination="dSF-Br-vr1" id="9F1-R8-afg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlJ-Ga-iFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="18"/>
+            <point key="canvasLocation" x="2301.5999999999999" y="17.541229385307346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zbl-vB-cxI">

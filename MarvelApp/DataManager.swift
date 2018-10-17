@@ -78,7 +78,9 @@ class DataManager
         for i in 0..<numberOfItems
         {
             let oneCharJSON = charsJSON["data"]["results"][i]
-            guard let charName = oneCharJSON["name"].string,
+            guard
+                let charID = oneCharJSON["id"].int,
+                let charName = oneCharJSON["name"].string,
                 let charImagePath = oneCharJSON["thumbnail"]["path"].string,
                 let charImageExt = oneCharJSON["thumbnail"]["extension"].string,
                 let charInfo = oneCharJSON["description"].string
@@ -86,7 +88,7 @@ class DataManager
             {
                 continue
             }
-            let character = CharModel(pName: charName, pImagePath: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
+            let character = CharModel(pID: charID, pName: charName, pImagePath: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
             chars.append(character)
             saveToImageCache(imagePath: character.imagePath)
         }

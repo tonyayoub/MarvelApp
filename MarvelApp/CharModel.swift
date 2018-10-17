@@ -10,12 +10,16 @@ import UIKit
 
 class CharModel: NSObject
 {
+    var id:Int
     var name:String
     var imagePath:String
     var info:String
     
-    init(pName: String, pImagePath: String, pInfo: String )
+    
+    
+    init(pID: Int, pName: String, pImagePath: String, pInfo: String )
     {
+        id = pID
         name = pName
         imagePath = pImagePath
         info = pInfo
