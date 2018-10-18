@@ -8,5 +8,6 @@ target 'MarvelApp' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'CryptoSwift'
+    pod 'SVProgressHUD'
 
 end

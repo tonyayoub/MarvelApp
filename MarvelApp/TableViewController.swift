@@ -20,7 +20,9 @@ class TableViewController: UITableViewController, DataManagerDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         DataManager.shared.delegate = self
-        DataManager.shared.downloadData(ofsset: 0)
+        DataManager.shared.downloadData()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,7 +66,7 @@ class TableViewController: UITableViewController, DataManagerDelegate {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == DataManager.shared.chars.count
         {
-            DataManager.shared.downloadData(ofsset: 20)
+            DataManager.shared.downloadData()
         }
     }
     /*

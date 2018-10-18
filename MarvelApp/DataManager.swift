@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import CryptoSwift
+import SVProgressHUD
 
 // singleton class for requesting, updating and caching data
 class DataManager
@@ -35,9 +36,10 @@ class DataManager
 
     }
     
-    func downloadData(ofsset: Int)
+    func downloadData()
     {
-      //  chars.removeAll()
+        SVProgressHUD.show(withStatus: "Downloading...")
+        let offset = chars.count //0 at start, 20 next scroll ..etc
         print("downloading data...")
         let url = baseURL + ""
         var parameters: [String: String] = [:]
@@ -53,6 +55,7 @@ class DataManager
         parameters.updateValue(publicKey, forKey: "apikey")
         parameters.updateValue(ts, forKey: "ts")
         parameters.updateValue(hash, forKey: "hash")
+        parameters.updateValue(String(offset), forKey: "offset")
         print("called url: \(url)")
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
@@ -91,7 +94,11 @@ class DataManager
             let character = CharModel(pID: charID, pName: charName, pImagePath: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
             chars.append(character)
             saveToImageCache(imagePath: character.imagePath)
+          //  SVProgressHUD.dismiss()
+            
+//            SVProgressHUD.showProgress(Float(chars.count), status: "\(chars.count * 5)%")
         }
+        SVProgressHUD.dismiss()
         delegate?.didFinishDownloading(sender: self)
     }
     
@@ -109,6 +116,7 @@ class DataManager
             url = urlComps.url!
             if images[imagePath] == nil
             {
+                //I made the download blocks the application to wait the new data (like facebook)
 //                DispatchQueue.global().async {
                     if let data = try? Data(contentsOf: url)
                     {
@@ -117,6 +125,7 @@ class DataManager
                             self.images[imagePath] = newImage
                    //         print(url)
                             print(self.images.count)
+
                         }
                     }
               //  }

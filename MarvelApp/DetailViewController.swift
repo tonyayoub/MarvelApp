@@ -18,8 +18,7 @@ class DetailViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        print(self.view.frame.width)
-        print(charInfo.font?.pointSize)
+
         if let currentChar = char
         {
             self.navigationItem.title = "\(currentChar.id)"
