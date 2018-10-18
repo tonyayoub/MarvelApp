@@ -22,7 +22,7 @@ class DetailViewController: UIViewController
         if let currentChar = char
         {
             self.navigationItem.title = "\(currentChar.id)"
-            self.charImage.image = DataManager.shared.images[currentChar.imagePath]
+            self.charImage.image = DataManager.shared.images[currentChar.id]
             self.charInfo.text = currentChar.info
         }
     }

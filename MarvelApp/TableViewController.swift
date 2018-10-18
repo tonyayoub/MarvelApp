@@ -57,7 +57,7 @@ class TableViewController: UITableViewController, DataManagerDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharCell", for: indexPath) as! TableViewCell
         let char = DataManager.shared.chars[indexPath.row]
         cell.charLabel.text = char.name
-        let charImage = DataManager.shared.images[char.imagePath]
+        let charImage = DataManager.shared.images[char.id]
         cell.charImage.image = charImage
         return cell
 

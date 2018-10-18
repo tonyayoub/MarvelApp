@@ -26,7 +26,7 @@ class DataManager
     
     //data array
     var chars:[CharModel] = [CharModel]()
-    var images:[String: UIImage] = [:]
+    var images:[Int: UIImage] = [:] //char ID: UIImage
 
     
     
@@ -68,11 +68,23 @@ class DataManager
            //     print(charsJSON)
                 print(charsJSON["data"]["results"][0]["name"])
                 self.fillCharsArray(charsJSON: charsJSON)
+
                 
             }
-            else {
+            else
+            {
                 print("Error \(String(describing: response.result.error))")
+                self.loadCharsArray() // from device disk
+                self.prepareImages() // from device disk
+
+                
             }
+            SVProgressHUD.dismiss()
+            if(self.chars.count > offset) // new data is downloaded
+            {
+                self.delegate?.didFinishDownloading(sender: self)
+            }
+
         }
     }
     
@@ -93,17 +105,32 @@ class DataManager
             }
             let character = CharModel(pID: charID, pName: charName, pImagePath: "\(charImagePath).\(charImageExt)", pInfo: charInfo)
             chars.append(character)
-            saveToImageCache(imagePath: character.imagePath)
-          //  SVProgressHUD.dismiss()
-            
-//            SVProgressHUD.showProgress(Float(chars.count), status: "\(chars.count * 5)%")
+            if let savedImage = getSavedImage(imageID: charID)
+            {
+                images[charID] = savedImage
+            }
+            else
+            {
+                downloadImage(imagePath: character.imagePath, charID: charID)
+            }
         }
-        SVProgressHUD.dismiss()
-        delegate?.didFinishDownloading(sender: self)
+        saveCharsArray()
     }
     
-    func saveToImageCache(imagePath: String)
+    func prepareImages()
     {
+        for char in chars
+        {
+            if let savedImage = getSavedImage(imageID: char.id)
+            {
+                images[char.id] = savedImage
+            }
+        }
+    }
+    
+    func downloadImage(imagePath: String, charID: Int)
+    {
+        
         // save image to images cache
         guard var url = URL(string: imagePath) else
         {
@@ -114,7 +141,7 @@ class DataManager
         {
             urlComps.scheme = "https"
             url = urlComps.url!
-            if images[imagePath] == nil
+            if images[charID] == nil
             {
                 //I made the download blocks the application to wait the new data (like facebook)
 //                DispatchQueue.global().async {
@@ -122,7 +149,8 @@ class DataManager
                     {
                         if let newImage = UIImage(data: data)
                         {
-                            self.images[imagePath] = newImage
+                            self.images[charID] = newImage
+                            self.saveImageToDocumentDirectory(imageID: charID)
                    //         print(url)
                             print(self.images.count)
 
@@ -131,6 +159,83 @@ class DataManager
               //  }
             }
         }
+    }
+    
+    func saveImageToDocumentDirectory(imageID: Int)
+    {
+        guard let image = self.images[imageID] else
+        {
+            return
+        }
+        guard let data = UIImageJPEGRepresentation(image, 1) ?? UIImagePNGRepresentation(image) else
+        {
+            return
+        }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else
+        {
+            return
+        }
+        do
+        {
+            try data.write(to: directory.appendingPathComponent(String(imageID))!)
+            return
+        }
+        catch
+        {
+            print("error saving image: \(error.localizedDescription)")
+            return
+        }
+    }
+    
+    func getSavedImage(imageID: Int) -> UIImage?
+    {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        {
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(String(imageID)).path)
+        }
+        return nil
+    }
+    
+    func saveCharsArray()
+    {
+        guard let charsFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("charsArray") else
+        {
+            return
+        }
+        let encoder = PropertyListEncoder()
+        do
+        {
+            let data = try encoder.encode(self.chars)
+            try data.write(to: charsFilePath)
+        }
+        catch
+        {
+            print("Error encoding, \(error)")
+        }
+        
+    }
+    
+    func loadCharsArray()
+    {
+        guard let charsFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("charsArray") else
+        {
+            return
+        }
+        guard let data = try? Data(contentsOf: charsFilePath) else
+        {
+            return
+        }
+        let decoder = PropertyListDecoder()
+        do
+        {
+            self.chars = try decoder.decode([CharModel].self , from: data)
+        }
+        catch
+        {
+            print("Error decoding, \(error)")
+
+        }
+        
     }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharModel: NSObject
+class CharModel: Codable
 {
     var id:Int
     var name:String
